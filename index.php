@@ -20,17 +20,17 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
     <div class="page-header">
         <h1>Manajemen Data Karyawan</h1>
         <div class="credit">
-            <p class="credit-name">Mohamad Fikri Isfahani</p>
+            <p class="credit-name">Ardyn Nugraha Regyan Septimus</p>
             <p class="credit-nim">(1204230031)</p>
         </div>
     </div>
         
         <?php if ($status == 'success' && $action == 'create'): ?>
-            <div class="alert alert-success" id="alertBox">✅ Data karyawan berhasil ditambahkan!</div>
+            <div class="alert alert-success" id="alertBox">✅ Data karyawan udah berhasil ditambahkan!</div>
         <?php elseif ($status == 'success' && $action == 'update'): ?>
-            <div class="alert alert-success" id="alertBox">✅ Data karyawan berhasil diupdate!</div>
+            <div class="alert alert-success" id="alertBox">✅ Data karyawan udah berhasil diupdate!</div>
         <?php elseif ($status == 'success' && $action == 'delete'): ?>
-            <div class="alert alert-success" id="alertBox">✅ Data karyawan berhasil dihapus!</div>
+            <div class="alert alert-success" id="alertBox">✅ Data karyawan udah berhasil dihapus!</div>
         <?php elseif ($status == 'error'): ?>
             <div class="alert alert-error" id="alertBox">❌ Terjadi kesalahan! Silakan coba lagi.</div>
         <?php endif; ?>
