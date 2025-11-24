@@ -14,106 +14,150 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Manajemen Data Karyawan</title>
     <style>
+        /* Modern Color Palette */
+        :root {
+            --primary-color: #0077b6; /* Blue */
+            --secondary-color: #00b4d8; /* Light Blue */
+            --background-light: #f8f9fa; /* Light Grey BG */
+            --surface-color: #ffffff; /* Card/Container BG */
+            --text-color: #343a40; /* Dark Text */
+            --success-bg: #90e0ef; /* Light Teal Success */
+            --success-text: #005f73;
+            --error-bg: #ef476f; /* Bright Pink Error */
+            --error-text: #ffffff;
+            --delete-btn: #dc3545; /* Red Delete */
+            --edit-btn: #0077b6; /* Blue Edit */
+        }
+
         /* Reset & General */
         body {
-            background-color: #f0f4f8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            background-color: var(--background-light);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
+            line-height: 1.6;
         }
+
         /* Container */
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            padding: 30px;
+            background-color: var(--surface-color);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px;
         }
+
         /* Header */
         .page-header h1 {
             text-align: center;
-            font-size: 2.5rem;
-            color: #005f73;
+            font-size: 2.8rem;
+            color: var(--primary-color);
             margin-bottom: 5px;
+            font-weight: 700;
         }
+
         .credit {
             text-align: center;
             font-style: italic;
-            color: #0a9396;
-            margin-bottom: 20px;
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
         }
-        .credit-name {
-            font-weight: 600;
-        }
-        .credit-nim {
-            font-weight: 400;
-        }
+
         /* Alerts */
         .alert {
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
+            padding: 18px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
             font-weight: 600;
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
+
         .alert-success {
-            background-color: #94d2bd;
-            color: #004b40;
-            border: 1px solid #0a7569;
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-text);
         }
+
         .alert-error {
-            background-color: #ef476f;
-            color: white;
-            border: 1px solid #b11226;
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border: 1px solid #c82333;
         }
+
         /* Action Bar */
         .action-bar {
             text-align: right;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
+
         .btn-add {
-            background-color: #0a9396;
-            color: white;
-            padding: 12px 22px;
-            border-radius: 25px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 12px 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
         }
+
         .btn-add:hover {
-            background-color: #005f73;
+            background-color: #00a4c2;
+            box-shadow: 0 6px 15px rgba(0, 180, 216, 0.5);
         }
+
         /* Table */
         table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 10px;
+            border-spacing: 0 15px; /* Lebih banyak ruang antar baris */
         }
+
         thead th {
-            background-color: #005f73;
+            background-color: var(--primary-color);
             color: white;
             text-align: left;
-            padding: 12px 15px;
-            border-radius: 15px 15px 0 0;
+            padding: 15px 20px;
+            font-weight: 600;
         }
+
+        thead tr:first-child th:first-child { border-top-left-radius: 10px; }
+        thead tr:first-child th:last-child { border-top-right-radius: 10px; }
+
         tbody tr {
-            background-color: #e0fbfc;
-            border-radius: 15px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background-color: var(--surface-color);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for card effect */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        tbody tr:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
         tbody td {
-            padding: 15px;
+            padding: 18px 20px;
             vertical-align: middle;
         }
+        
+        /* Ensure table corners are rounded */
+        tbody tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+        tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+
+
         /* Buttons */
         .action-buttons .btn-edit,
         .action-buttons .btn-delete {
             border: none;
-            padding: 7px 14px;
-            margin-right: 8px;
+            padding: 8px 16px;
+            margin-right: 10px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
@@ -122,97 +166,135 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
             display: inline-block;
             color: white;
         }
+
         .btn-edit {
-            background-color: #0077b6;
+            background-color: var(--edit-btn);
         }
+
         .btn-edit:hover {
             background-color: #023e8a;
         }
+
         .btn-delete {
-            background-color: #d72631;
+            background-color: var(--delete-btn);
         }
+
         .btn-delete:hover {
-            background-color: #a31420;
+            background-color: #c82333;
         }
+
         /* No Data */
         .no-data {
             text-align: center;
-            font-size: 1.2rem;
-            padding: 50px 0;
+            font-size: 1.4rem;
+            padding: 60px 0;
             color: #6c757d;
+            border: 2px dashed #ced4da;
+            border-radius: 10px;
+            background-color: #e9ecef;
+            margin-top: 30px;
         }
+
         /* Modal */
         .modal {
             display: none;
             position: fixed;
             z-index: 1000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
             align-items: center;
             justify-content: center;
         }
+
         .modal.show {
             display: flex;
             animation: fadeIn 0.3s forwards;
         }
+
         .modal-content {
             background-color: white;
             border-radius: 15px;
-            padding: 25px 30px;
-            max-width: 420px;
+            padding: 30px 40px;
+            max-width: 450px;
             width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             text-align: center;
+            transform: scale(0.9);
+            animation: scaleIn 0.3s forwards;
         }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
         .modal-header h2 {
             margin: 0 0 15px;
-            color: #d72631;
+            color: var(--delete-btn);
+            font-size: 1.8rem;
         }
+
         .modal-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
-            color: #d72631;
+            color: var(--delete-btn);
         }
+
         .modal-body p {
             font-size: 1.1rem;
             color: #444;
         }
+
         .modal-warning {
-            color: #ff4d6d;
+            color: var(--delete-btn);
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 15px;
+            display: block;
         }
+
         .modal-footer {
-            margin-top: 25px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
+
         .btn-cancel,
         .btn-confirm-delete {
-            border-radius: 8px;
-            padding: 10px 25px;
+            border-radius: 10px;
+            padding: 12px 30px;
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.25s ease;
             border: none;
-            margin: 5px;
+            text-decoration: none;
         }
+
         .btn-cancel {
-            background-color: #ccc;
-            color: #444;
+            background-color: #adb5bd;
+            color: white;
         }
+
         .btn-cancel:hover {
-            background-color: #999;
-            color: white;
+            background-color: #6c757d;
         }
+
         .btn-confirm-delete {
-            background-color: #d72631;
+            background-color: var(--delete-btn);
             color: white;
         }
+
         .btn-confirm-delete:hover {
-            background-color: #a31420;
+            background-color: #c82333;
         }
+
         @keyframes fadeIn {
             from {opacity: 0;}
             to {opacity: 1;}
+        }
+
+        @keyframes scaleIn {
+            from {transform: scale(0.9);}
+            to {transform: scale(1);}
         }
     </style>
 </head>
@@ -237,7 +319,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         <?php endif; ?>
 
         <div class="action-bar">
-            <a href="create.php" class="btn btn-add">Tambah Karyawan</a>
+            <a href="create.php" class="btn btn-add">➕ Tambah Karyawan</a>
         </div>
 
         <?php if (mysqli_num_rows($result) > 0): ?>
@@ -262,15 +344,15 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
                     <td><?php echo htmlspecialchars($row['jabatan']); ?></td>
                     <td>Rp <?php echo number_format($row['gaji'], 0, ',', '.'); ?></td>
                     <td class="action-buttons">
-                        <a href="update.php?id=<?php echo $row['id']; ?>" class="btn btn-edit">Edit</a>
-                        <button onclick="showDeleteModal(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars($row['nama']); ?>')" class="btn btn-delete">Hapus</button>
+                        <a href="update.php?id=<?php echo $row['id']; ?>" class="btn btn-edit">📝 Edit</a>
+                        <button onclick="showDeleteModal(<?php echo $row['id']; ?>, '<?php echo htmlspecialchars($row['nama']); ?>')" class="btn btn-delete">🗑️ Hapus</button>
                     </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
         <?php else: ?>
-        <p class="no-data">Belum ada data karyawan.</p>
+        <p class="no-data">Data karyawan masih kosong. Yuk, tambahkan data pertama!</p>
         <?php endif; ?>
     </div>
 
@@ -281,7 +363,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
                 <h2>Konfirmasi Hapus Data</h2>
             </div>
             <div class="modal-body">
-                <p>Yakin mau hapus data <strong id="employeeName"></strong>?</p>
+                <p>Yakin mau hapus data **<strong id="employeeName"></strong>**?</p>
                 <p class="modal-warning">Data yang dihapus tidak bisa dikembalikan!</p>
             </div>
             <div class="modal-footer">
@@ -294,15 +376,17 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
     <script>
         const alertBox = document.getElementById('alertBox');
         if (alertBox) {
+            // Animasi fade out
             setTimeout(function() {
                 alertBox.style.opacity = '0';
                 alertBox.style.transform = 'translateY(-20px)';
 
                 setTimeout(function() {
                     alertBox.remove();
-                }, 300);
-            }, 3000);
+                }, 500); // Tunggu sampai transisi opacity selesai
+            }, 3000); // Durasi tampil 3 detik
 
+            // Hapus parameter GET dari URL tanpa me-reload (clean URL)
             if (window.history.replaceState) {
                 window.history.replaceState({}, document.title, "index.php");
             }
@@ -315,8 +399,10 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
             employeeName.textContent = name;
             confirmBtn.href = 'delete.php?id=' + id;
+            
+            // Set display flex sebelum menambahkan class 'show' untuk memicu transisi
             modal.style.display = 'flex';
-
+            
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
@@ -328,7 +414,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
             setTimeout(() => {
                 modal.style.display = 'none';
-            }, 300);
+            }, 300); // Sesuaikan dengan durasi transisi
         }
 
         window.onclick = function(event) {
