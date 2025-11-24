@@ -28,7 +28,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
             --delete-btn: #dc3545; /* Red Delete */
             --edit-btn: #0077b6; /* Blue Edit */
             /* Warna tambahan untuk credit section */
-            --credit-bg: #e0f2f7; /* Sangat lembut, biru keabu-abuan */
+            --credit-bg: #0077b6; /* Sangat lembut, biru keabu-abuan */
             --credit-text-dark: #2a5d7e; /* Biru tua untuk nama */
             --credit-text-light: #5a7d9b; /* Biru keabu-abuan untuk NIM */
         }
