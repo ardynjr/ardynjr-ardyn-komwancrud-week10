@@ -27,11 +27,14 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
             --error-text: #ffffff;
             --delete-btn: #dc3545; /* Red Delete */
             --edit-btn: #0077b6; /* Blue Edit */
+            /* Warna tambahan untuk credit section */
+            --credit-bg: #e0f2f7; /* Sangat lembut, biru keabu-abuan */
+            --credit-text-dark: #2a5d7e; /* Biru tua untuk nama */
+            --credit-text-light: #5a7d9b; /* Biru keabu-abuan untuk NIM */
         }
 
         /* Reset & General */
         body {
-            /* Perubahan utama di sini: Menggunakan warna background yang lebih lembut */
             background-color: var(--background-body); 
             font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             color: var(--text-color);
@@ -44,7 +47,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            /* Mempertahankan putih untuk kontainer utama agar menonjol dari body */
             background-color: var(--background-surface); 
             border-radius: 16px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
@@ -62,11 +64,29 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
         .credit {
             text-align: center;
-            font-style: italic;
-            color: #6c757d;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
+            /* Perubahan di sini */
+            background-color: var(--credit-bg); /* Warna background baru */
+            padding: 15px 20px; /* Padding agar tidak terlalu mepet */
+            border-radius: 10px; /* Sudut membulat */
+            margin: 0 auto 30px auto; /* Margin atas bawah dan tengah */
+            max-width: fit-content; /* Lebar sesuai konten */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Sedikit bayangan */
+            font-style: normal; /* Menghilangkan italic dari .credit */
         }
+        .credit-name {
+            font-weight: 600;
+            color: var(--credit-text-dark); /* Warna teks lebih gelap */
+            font-size: 1.1rem; /* Ukuran font sedikit lebih besar */
+            margin-bottom: 5px;
+            display: block; /* Memastikan setiap p berada di baris baru */
+        }
+        .credit-nim {
+            font-weight: 400;
+            color: var(--credit-text-light); /* Warna teks sedikit lebih terang */
+            font-size: 0.95rem;
+            display: block; /* Memastikan setiap p berada di baris baru */
+        }
+
 
         /* Alerts */
         .alert {
@@ -133,7 +153,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         thead tr:first-child th:last-child { border-top-right-radius: 10px; }
 
         tbody tr {
-            /* Mempertahankan putih untuk baris tabel agar terlihat seperti kartu */
             background-color: var(--background-surface); 
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
