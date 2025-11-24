@@ -17,9 +17,9 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         /* Modern Color Palette */
         :root {
             --primary-color: #0077b6; /* Blue */
-            --secondary-color: #00b4d8; /* Light Blue */
-            --background-light: #f8f9fa; /* Light Grey BG */
-            --surface-color: #ffffff; /* Card/Container BG */
+            --secondary-color: #00b4d8; /* Light Blue/Teal */
+            --background-body: #eef4f8; /* Background Body: Soft light blue/grey */
+            --background-surface: #ffffff; /* Card/Container BG: White */
             --text-color: #343a40; /* Dark Text */
             --success-bg: #90e0ef; /* Light Teal Success */
             --success-text: #005f73;
@@ -31,7 +31,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
         /* Reset & General */
         body {
-            background-color: var(--background-light);
+            /* Perubahan utama di sini: Menggunakan warna background yang lebih lembut */
+            background-color: var(--background-body); 
             font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             color: var(--text-color);
             margin: 0;
@@ -43,7 +44,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background-color: var(--surface-color);
+            /* Mempertahankan putih untuk kontainer utama agar menonjol dari body */
+            background-color: var(--background-surface); 
             border-radius: 16px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             padding: 40px;
@@ -116,7 +118,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 15px; /* Lebih banyak ruang antar baris */
+            border-spacing: 0 15px; 
         }
 
         thead th {
@@ -131,9 +133,10 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         thead tr:first-child th:last-child { border-top-right-radius: 10px; }
 
         tbody tr {
-            background-color: var(--surface-color);
+            /* Mempertahankan putih untuk baris tabel agar terlihat seperti kartu */
+            background-color: var(--background-surface); 
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for card effect */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -147,7 +150,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
             vertical-align: middle;
         }
         
-        /* Ensure table corners are rounded */
         tbody tr:last-child td:first-child { border-bottom-left-radius: 10px; }
         tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
@@ -195,7 +197,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
             margin-top: 30px;
         }
 
-        /* Modal */
+        /* Modal (Dibiarkan sama) */
         .modal {
             display: none;
             position: fixed;
