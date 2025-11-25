@@ -168,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <h1>Tambah Karyawan Baru</h1>
+        <h1>Tambah Anggota Tim</h1>
         
         <?php if ($error): ?>
             <div class="alert alert-error">❌ <?php echo $error; ?></div>
