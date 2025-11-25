@@ -322,7 +322,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>Manajemen Data Karyawan</h1>
+            <h1>Data Anggota Tim</h1>
             <div class="credit">
                 <p class="credit-name">Ardyn Nugraha Regyan Septimus</p>
                 <p class="credit-nim">(1204230031)</p>
@@ -330,17 +330,17 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
         </div>
 
         <?php if ($status == 'success' && $action == 'create'): ?>
-            <div class="alert alert-success" id="alertBox">✅ Data karyawan udah berhasil ditambahkan!</div>
+            <div class="alert alert-success" id="alertBox">✅ Data Anggota Tim udah berhasil ditambahkan!</div>
         <?php elseif ($status == 'success' && $action == 'update'): ?>
-            <div class="alert alert-success" id="alertBox">✅ Data karyawan udah berhasil diupdate!</div>
+            <div class="alert alert-success" id="alertBox">✅ Data Anggota Tim udah berhasil diupdate!</div>
         <?php elseif ($status == 'success' && $action == 'delete'): ?>
-            <div class="alert alert-success" id="alertBox">✅ Data karyawan udah berhasil dihapus!</div>
+            <div class="alert alert-success" id="alertBox">✅ Data Anggota Tim udah berhasil dihapus!</div>
         <?php elseif ($status == 'error'): ?>
             <div class="alert alert-error" id="alertBox">❌ Terjadi kesalahan! Silakan coba lagi.</div>
         <?php endif; ?>
 
         <div class="action-bar">
-            <a href="create.php" class="btn btn-add">➕ Tambah Karyawan</a>
+            <a href="create.php" class="btn btn-add">➕ Tambah Anggota Tim</a>
         </div>
 
         <?php if (mysqli_num_rows($result) > 0): ?>
@@ -373,7 +373,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
             </tbody>
         </table>
         <?php else: ?>
-        <p class="no-data">Data karyawan masih kosong. Yuk, tambahkan data pertama!</p>
+        <p class="no-data">Data Anggota Tim masih kosong. Yuk, tambahkan data pertama!</p>
         <?php endif; ?>
     </div>
 
