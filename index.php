@@ -12,7 +12,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Manajemen Data Karyawan</title>
+    <title>Data Anggota Tim</title>
     <style>
         /* Modern Color Palette */
         :root {
